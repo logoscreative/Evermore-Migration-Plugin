@@ -1,6 +1,8 @@
 <?php
 /*
-Plugin Name: Evermore Migration
+* Plugin Name: Evermore Migration
+* Description: Carry over some whitelisting functionality from custom Evermore environment
+* Version: 1.0
 */
 
 // If this file is called directly, abort.
