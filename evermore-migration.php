@@ -203,3 +203,49 @@ function logos_concierge_filter_content_for_cdn($html) {
 add_filter( 'gravityview_image_html', 'logos_concierge_filter_content_for_cdn' );
 add_filter( 'fl_builder_render_module_html_content', 'logos_concierge_filter_content_for_cdn', 99, 4 );
 add_filter( 'fl_builder_render_css', 'logos_concierge_filter_content_for_cdn', 10, 3 );
+
+function evermore_filter_blox_content_for_wp_offload_s3( $content, $id, $block, $global ) {
+
+	if ( isset($_GET['cliffdebug']) && $_GET['cliffdebug'] === 'sure' ) {
+		var_dump($content);
+	}
+
+	$content['editor']['content'] = apply_filters( 'as3cf_filter_post_local_to_s3', $content['editor']['content'] );
+	$content['editor']['content'] = apply_filters( 'as3cf_filter_post_local_to_provider', $content['editor']['content'] );
+
+	$content['image']['custom']['url'] = apply_filters( 'as3cf_filter_post_local_to_s3', $content['image']['custom']['url'] );
+	$content['image']['custom']['url'] = apply_filters( 'as3cf_filter_post_local_to_provider', $content['image']['custom']['url'] );
+
+	return $content;
+
+}
+
+function evermore_filter_blox_admin_content_for_wp_offload_s3( $content ) {
+
+	if ( isset($_GET['cliffdebug']) && $_GET['cliffdebug'] === 'sure' ) {
+		var_dump($content);
+	}
+
+	$content = apply_filters( 'as3cf_filter_post_local_to_s3', $content );
+	$content = apply_filters( 'as3cf_filter_post_local_to_provider', $content );
+
+	return $content;
+
+}
+
+function evermore_filter_blox_admin_image_for_wp_offload_s3( $content ) {
+
+	if ( isset($_GET['cliffdebug']) && $_GET['cliffdebug'] === 'sure' ) {
+		var_dump($content);
+	}
+
+	$content = apply_filters( 'as3cf_filter_post_local_to_s3', $content );
+	$content = apply_filters( 'as3cf_filter_post_local_to_provider', $content );
+
+	return $content;
+
+}
+
+add_filter( 'blox_frontend_content', 'evermore_filter_blox_content_for_wp_offload_s3', 10, 4 );
+add_filter( 'blox_admin_editor_content', 'evermore_filter_blox_admin_content_for_wp_offload_s3' );
+add_filter( 'blox_admin_image_content', 'evermore_filter_blox_admin_image_for_wp_offload_s3' );
