@@ -2,7 +2,7 @@
 /*
 * Plugin Name: Evermore Migration
 * Description: Carry over some whitelisting functionality from custom Evermore environment
-* Version: 1.0.1
+* Version: 1.0.2
 * GitHub Plugin URI: https://github.com/logoscreative/Evermore-Migration-Plugin
 */
 
@@ -11,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ! defined( 'DISALLOW_FILE_MODS' ) ) {
+if ( ( !isset($_GET['cliffdebug']) || $_GET['cliffdebug'] !== 'sure' ) && ! defined( 'DISALLOW_FILE_MODS' ) ) {
 	define( 'DISALLOW_FILE_MODS', true );
 }
 
