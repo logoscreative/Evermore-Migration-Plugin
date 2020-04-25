@@ -2,7 +2,8 @@
 /*
 * Plugin Name: Evermore Migration
 * Description: Carry over some whitelisting functionality from custom Evermore environment
-* Version: 1.0
+* Version: 1.0.1
+* GitHub Plugin URI: https://github.com/logoscreative/Evermore-Migration-Plugin
 */
 
 // If this file is called directly, abort.
