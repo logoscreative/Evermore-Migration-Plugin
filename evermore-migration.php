@@ -2,7 +2,7 @@
 /*
 * Plugin Name: Evermore Migration
 * Description: Carry over some whitelisting functionality from custom Evermore environment
-* Version: 1.0.2
+* Version: 1.0.3
 * GitHub Plugin URI: https://github.com/logoscreative/Evermore-Migration-Plugin
 */
 
@@ -11,8 +11,13 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ( !isset($_GET['cliffdebug']) || $_GET['cliffdebug'] !== 'sure' ) && ! defined( 'DISALLOW_FILE_MODS' ) ) {
-	define( 'DISALLOW_FILE_MODS', true );
+$current_user = wp_get_current_user();
+
+if (
+	!strpos( $current_user->user_email, '@evermo.re' )
+	|| !isset($_GET['cliffdebug'])
+	&& !defined( 'DISALLOW_FILE_MODS' ) ) {
+		define( 'DISALLOW_FILE_MODS', true );
 }
 
 add_filter( 'widget_text', 'shortcode_unautop');
