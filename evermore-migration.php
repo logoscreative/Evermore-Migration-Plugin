@@ -2,7 +2,7 @@
 /*
 * Plugin Name: Evermore Migration
 * Description: Carry over some whitelisting functionality from custom Evermore environment
-* Version: 1.0.3.1
+* Version: 1.0.3.2
 * GitHub Plugin URI: https://github.com/logoscreative/Evermore-Migration-Plugin
 */
 
@@ -17,7 +17,7 @@ function logos_concierge_remove_file_mods() {
 
     if (
         !strpos($current_user->user_email, '@evermo.re')
-        || !isset($_GET['cliffdebug'])
+        && !isset($_GET['cliffdebug'])
         && !defined('DISALLOW_FILE_MODS')) {
         define('DISALLOW_FILE_MODS', true);
     }
