@@ -2,7 +2,7 @@
 /*
 * Plugin Name: Evermore Migration
 * Description: Carry over some whitelisting functionality from custom Evermore environment
-* Version: 1.0.3.2
+* Version: 1.0.3.3
 * GitHub Plugin URI: https://github.com/logoscreative/Evermore-Migration-Plugin
 */
 
@@ -261,3 +261,12 @@ function evermore_filter_blox_admin_image_for_wp_offload_s3( $content ) {
 add_filter( 'blox_frontend_content', 'evermore_filter_blox_content_for_wp_offload_s3', 10, 4 );
 add_filter( 'blox_admin_editor_content', 'evermore_filter_blox_admin_content_for_wp_offload_s3' );
 add_filter( 'blox_admin_image_content', 'evermore_filter_blox_admin_image_for_wp_offload_s3' );
+ 
+function evermore_widget_cdn_filter($text, $instance, $widget) {
+	
+	$text = apply_filters( 'as3cf_filter_post_local_to_provider', $text );
+    	return $text;
+	
+}
+
+add_filter( 'widget_text', 'evermore_widget_cdn_filter', 10, 3 );
